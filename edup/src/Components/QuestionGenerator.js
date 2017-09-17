@@ -5,7 +5,6 @@ export default class questionGenerator extends Component {
 
   constructor (problem, result) {
     super();
-
     this.operator = "";
     this.problem = problem;
     this.result = result;
@@ -141,7 +140,8 @@ export default class questionGenerator extends Component {
 
 
   render() {
-    let generatedQuestion = this.makeProblem(1,1);
+    let difficulty = 2 + this.props.difficulty;
+    let generatedQuestion = this.makeProblem(1,difficulty);
 
     function checkAnswer(Element) {
       console.log(generatedQuestion.toString());
@@ -180,6 +180,7 @@ export default class questionGenerator extends Component {
             <button className ="btn btn-success my-2 my-sm-0" type="submit" onClick={checkAnswer} >Sumbit</button>
           </div>
             <h1 id="response" />
+            <h1 id="diffIndicator">Difficulty is : {difficulty}</h1>
           </div>
       </div>
     );

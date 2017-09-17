@@ -10,28 +10,35 @@ export default class Face extends Component {
     super();
     this.state = {value: ''};
     this.emotion = [];
+    this.emotion[0] = 0;
+    this.emotion[1] = 0;
+    this.emotion[2] = 0;
+    this.emotion[3] = 0;
+    this.emotion[4] = 0;
+    this.emotion[5] = 0;
+    this.emotion[6] = 0;
+    this.emotion[7] = 0;
   }
 
-  emotionAnalyze = () => {
-
-  }
 
   setRef = (webcam) => {
     this.webcam = webcam;
   }
-  capture = () => {
-    let imageSrc = this.webcam.getScreenshot();
-    imageSrc = imageSrc.substr(23);
-    console.log(imageSrc);
-    const imgBlob = this.b64toBlob(imageSrc, "image/jpeg");
-    console.log(imgBlob);
+
+  autoprogo = () => {
+    let timeroutId = setTimeout(() => this.automatedProcess(), 5000);
+  }
+
+  automatedProcess = () => {
+    let timerId = setInterval(() => this.captureAndProcess(), 999);
+    setTimeout(() => { clearInterval(timerId); }, 5000);
+    console.log("automated Process started");
   };
 
   captureAndProcess = () => {
     let imageSrc = this.webcam.getScreenshot();
     imageSrc = imageSrc.substr(23);
     const imgBlob = this.b64toBlob(imageSrc, "image/jpeg");
-    console.log(imgBlob);
     this.processImage(imgBlob);
   };
 
@@ -97,9 +104,17 @@ export default class Face extends Component {
                 // Show formatted JSON on webpage.
                 $("#responseTextArea").val(JSON.stringify(data, null, 2));
                 console.log(JSON.stringify(data, null, 2));
-                if (data[0] != null)
-                  console.log(data[0].faceAttributes.emotion);
-                  this.emotionAnalyze();
+                if (data[0] != null) {
+                    this.emotion[0] += data[0].faceAttributes.emotion.anger;
+                    this.emotion[1] += data[0].faceAttributes.emotion.contempt;
+                    this.emotion[2] += data[0].faceAttributes.emotion.disgust;
+                    this.emotion[3] += data[0].faceAttributes.emotion.fear;
+                    this.emotion[4] += data[0].faceAttributes.emotion.happiness;
+                    this.emotion[5] += data[0].faceAttributes.emotion.neutral;
+                    this.emotion[6] += data[0].faceAttributes.emotion.sadness;
+                    this.emotion[7] += data[0].faceAttributes.emotion.surprise;
+                    console.log(this.emotion);
+                }
             })
 
             .fail(function(jqXHR, textStatus, errorThrown) {
@@ -115,13 +130,30 @@ export default class Face extends Component {
         };
 
       regen = () => {
+        this.emotion = [0,0,0,0,0,0,0,0];
         this.setState({value: this.value +1});
         document.getElementById("response").innerHTML = "";
         document.getElementById("answerInput").value = "";
       }
 
+      emoCheck = () => {
+        let emocheckVal = 0;
+        let sad = this.emotion[0]+this.emotion[1]+this.emotion[2]+this.emotion[3]+this.emotion[6]+this.emotion[7];
+        if (sad > 3 && this.emotion[4] > 3 && sad > this.emotion[4])
+          emocheckVal = -1;
+        else if (sad > 3 && this.emotion[4] > 3 && sad < this.emotion[4])
+          emocheckVal = 1;
+
+        if (this.emotion[4]/5 > 0.6)
+          emocheckVal = 1;
+        if (sad/5 > 0.1)
+          emocheckVal = -1;
+        console.log(emocheckVal);
+      }
+
   render() {
 
+    this.autoprogo();
     const styles = {
       font: {
         textAlign: 'center',
@@ -133,7 +165,7 @@ export default class Face extends Component {
 
     return (
       <div>
-        <QuestionGenerator />
+        <QuestionGenerator difficulty={this.emoCheck()}/>
         <div style={styles.font}>
           <button className ="btn btn-primary my-2 my-sm-0" type="submit" onClick={this.regen} >Next Question</button>
         </div>
@@ -147,7 +179,7 @@ export default class Face extends Component {
             width={500}
           />
           <br/>
-          <button onClick={this.captureAndProcess}>Magic Button</button>
+          <button onClick={this.automatedProcess}>Magic Button</button>
         </div>
 
         <br/><br/>

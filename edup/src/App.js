@@ -3,7 +3,6 @@ import AppBar from 'material-ui/AppBar';
 import Logo from './icon.jpg';
 
 import Face from './Components/face'
-import QuestionGenerator from './Components/QuestionGenerator'
 
 class App extends Component {
 
