@@ -7,10 +7,7 @@ export default class Face extends Component {
 
   constructor () {
     super();
-
     this.emotion = [];
-
-
   }
 
   emotionAnalyze = () => {

@@ -3,11 +3,7 @@ import './App.css';
 
 import Face from './Components/face'
 
-//let store = createStore();
-
 class App extends Component {
-
-
   render() {
     return (
       <div className="App">
