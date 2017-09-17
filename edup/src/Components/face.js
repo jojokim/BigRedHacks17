@@ -119,23 +119,23 @@ export default class Face extends Component {
         <div>
           <Webcam
             audio={false}
-            height={200}
+            height={500}
             ref={this.setRef}
             screenshotFormat="image/jpeg"
-            width={200}
+            width={500}
           />
           <br/>
           <button onClick={this.captureAndProcess}>Magic Button</button>
         </div>
 
         <br/><br/>
-        {/*<div id="wrapper" style={this.outputStyle}>
+        <div id="wrapper" style={this.outputStyle}>
             <div id="jsonOutput" style={this.imageStyle}>
                 Response:
                 <br/><br/>
                 <textarea id="responseTextArea" className="UIInput" style={{width:'580px', height:'400px'}}></textarea>
             </div>
-        </div>*/}
+        </div>
 
       </div>
     );
