@@ -1,16 +1,13 @@
-import React from 'react';
-
-
-export default class questionGenerator extends Component {
+export default class Problem {
 
   constructor (problem, result) {
-    super();
+
     this.problem = problem;
     this.result = result;
   }
 
   getProblem = () => {
-    return problem;
+    return this.problem;
   }
 
   setProblem = (problem) => {
@@ -18,7 +15,7 @@ export default class questionGenerator extends Component {
   }
 
   getResult = () => {
-    return result;
+    return this.result;
   }
 
   setResult = (result) => {
@@ -26,9 +23,11 @@ export default class questionGenerator extends Component {
   }
 
   toString = () => {
-    return problem + " = " + result;
+    return this.problem + " = " + this.result;
   }
-  render() {
-    return();
+
+  qString = () => {
+    return this.problem + " = ?";
   }
+
 }

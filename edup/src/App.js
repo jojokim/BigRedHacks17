@@ -3,7 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import Logo from './icon.jpg';
 
 import Face from './Components/face'
-
+import QuestionGenerator from './Components/QuestionGenerator'
 
 class App extends Component {
 
@@ -29,6 +29,7 @@ class App extends Component {
       iconStyles: {
         marginRight: 24,
       },
+
     };
 
     return (
@@ -37,6 +38,7 @@ class App extends Component {
           iconElementLeft={
               <img src={Logo} style={styles.large} alt=""/>
             } />
+        <QuestionGenerator style={styles.qGenStyle} />
         <Face/>
       </div>
     );
