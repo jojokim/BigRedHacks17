@@ -128,10 +128,9 @@ export default class Face extends Component {
           <button onClick={this.captureAndProcess}>Magic Button</button>
         </div>
 
-        <br/><br/>
+        <br/>
         <div id="wrapper" style={this.outputStyle}>
             <div id="jsonOutput" style={this.imageStyle}>
-                Response:
                 <br/><br/>
                 <textarea id="responseTextArea" className="UIInput" style={{width:'580px', height:'400px'}}></textarea>
             </div>
