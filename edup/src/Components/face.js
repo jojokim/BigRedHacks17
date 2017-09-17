@@ -145,7 +145,7 @@ export default class Face extends Component {
         else if (sad > 3 && this.emotion[4] > 3 && sad < this.emotion[4])
           emocheckVal = 1;
 
-        if (this.emotion[4]/5 > 0.6)
+        if (this.emotion[4]/5 > 0.5)
           emocheckVal = 1;
         if (sad/5 > 0.1)
           emocheckVal = -1;

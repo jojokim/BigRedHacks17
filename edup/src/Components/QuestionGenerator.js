@@ -144,7 +144,7 @@ export default class questionGenerator extends Component {
     this.diffValue = this.diffValue + this.props.difficulty;
     console.log("diff value is "+this.diffValue);
     let diffval = this.diffValue;
-    let generatedQuestion = this.makeProblem(1,diffval);
+    let generatedQuestion = this.makeProblem(this.randBetween(4, 1),diffval);
 
     function checkAnswer(Element) {
       console.log(generatedQuestion.toString());
