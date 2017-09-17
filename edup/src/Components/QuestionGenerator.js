@@ -8,6 +8,7 @@ export default class questionGenerator extends Component {
     this.operator = "";
     this.problem = problem;
     this.result = result;
+    this.diffValue = 2;
   }
 
   randBetween = (high, low) => {
@@ -140,8 +141,10 @@ export default class questionGenerator extends Component {
 
 
   render() {
-    let difficulty = 2 + this.props.difficulty;
-    let generatedQuestion = this.makeProblem(1,difficulty);
+    this.diffValue = this.diffValue + this.props.difficulty;
+    console.log("diff value is "+this.diffValue);
+    let diffval = this.diffValue;
+    let generatedQuestion = this.makeProblem(1,diffval);
 
     function checkAnswer(Element) {
       console.log(generatedQuestion.toString());
@@ -180,7 +183,7 @@ export default class questionGenerator extends Component {
             <button className ="btn btn-success my-2 my-sm-0" type="submit" onClick={checkAnswer} >Sumbit</button>
           </div>
             <h1 id="response" />
-            <h1 id="diffIndicator">Difficulty is : {difficulty}</h1>
+            <h1 id="diffIndicator">Difficulty is : {diffval}</h1>
           </div>
       </div>
     );

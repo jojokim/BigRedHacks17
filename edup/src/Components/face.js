@@ -18,6 +18,7 @@ export default class Face extends Component {
     this.emotion[5] = 0;
     this.emotion[6] = 0;
     this.emotion[7] = 0;
+    this.emoValue = 0;
   }
 
 
@@ -31,7 +32,7 @@ export default class Face extends Component {
 
   automatedProcess = () => {
     let timerId = setInterval(() => this.captureAndProcess(), 999);
-    setTimeout(() => { clearInterval(timerId); }, 5000);
+    setTimeout(() => { clearInterval(timerId); this.emoValue = this.emoCheck(); }, 5000);
     console.log("automated Process started");
   };
 
@@ -148,11 +149,12 @@ export default class Face extends Component {
           emocheckVal = 1;
         if (sad/5 > 0.1)
           emocheckVal = -1;
-        console.log(emocheckVal);
+
+        console.log("emoval is "+emocheckVal);
+        return emocheckVal;
       }
 
   render() {
-
     this.autoprogo();
     const styles = {
       font: {
@@ -165,7 +167,7 @@ export default class Face extends Component {
 
     return (
       <div>
-        <QuestionGenerator difficulty={this.emoCheck()}/>
+        <QuestionGenerator difficulty={this.emoValue}/>
         <div style={styles.font}>
           <button className ="btn btn-primary my-2 my-sm-0" type="submit" onClick={this.regen} >Next Question</button>
         </div>
