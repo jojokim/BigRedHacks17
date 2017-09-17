@@ -38,7 +38,6 @@ class App extends Component {
           iconElementLeft={
               <img src={Logo} style={styles.large} alt=""/>
             } />
-        <QuestionGenerator style={styles.qGenStyle} />
         <Face/>
       </div>
     );

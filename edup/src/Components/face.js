@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import Webcam from 'react-webcam';
 
+import QuestionGenerator from './QuestionGenerator'
 
 export default class Face extends Component {
 
   constructor () {
     super();
+    this.state = {value: ''};
     this.emotion = [];
   }
 
@@ -112,10 +114,30 @@ export default class Face extends Component {
             });
         };
 
+      regen = () => {
+        this.setState({value: this.value +1});
+        document.getElementById("response").innerHTML = "";
+        document.getElementById("answerInput").value = "";
+      }
 
   render() {
+
+    const styles = {
+      font: {
+        textAlign: 'center',
+        color: 'white',
+        marginTop: '100px',
+        marginBottom: '40px'
+      }
+    }
+
     return (
       <div>
+        <QuestionGenerator />
+        <div style={styles.font}>
+          <button className ="btn btn-primary my-2 my-sm-0" type="submit" onClick={this.regen} >Next Question</button>
+        </div>
+
         <div>
           <Webcam
             audio={false}

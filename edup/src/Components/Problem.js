@@ -30,4 +30,8 @@ export default class Problem {
     return this.problem + " = ?";
   }
 
+  rString = () => {
+    return this.result.toString();
+  }
+
 }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import Problem from './Problem'
 
 export default class questionGenerator extends Component {
@@ -142,7 +141,21 @@ export default class questionGenerator extends Component {
 
 
   render() {
-    let generatedQuestion = this.makeProblem(2,2);
+    let generatedQuestion = this.makeProblem(1,1);
+
+    function checkAnswer(Element) {
+      console.log(generatedQuestion.toString());
+      console.log(document.getElementById("answerInput").value);
+      if (generatedQuestion.rString() === document.getElementById("answerInput").value) {
+        console.log("we're gonna get microsoft surface");
+        document.getElementById("response").innerHTML = "Correct";
+        document.getElementById("response").style.color = "green";
+      }
+      else {
+        document.getElementById("response").innerHTML = "Incorrect";
+        document.getElementById("response").style.color = "red";
+      }
+    }
 
     const styles = {
       font: {
@@ -161,11 +174,13 @@ export default class questionGenerator extends Component {
       <div className="container">
         <div style={styles.font}>
           <h1 className="display-3" >{generatedQuestion.qString()}</h1>
-        </div>
-        <form className="form-inline my-2 my-lg-0" style={styles.middle}>
-          <input className="form-control mr-sm-2" type="text" placeholder="Enter the Answer"/>
-          <button className ="btn btn-outline-success my-2 my-sm-0" type="submit">Sumbit</button>
-        </form>
+
+          <div>
+            <input id="answerInput" className="form-control mr-sm-2" type="text" placeholder="Enter the Answer"/>
+            <button className ="btn btn-success my-2 my-sm-0" type="submit" onClick={checkAnswer} >Sumbit</button>
+          </div>
+            <h1 id="response" />
+          </div>
       </div>
     );
   }
