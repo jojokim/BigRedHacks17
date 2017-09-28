@@ -145,7 +145,7 @@ export default class Face extends Component {
         else if (sad > 3 && this.emotion[4] > 3 && sad < this.emotion[4])
           emocheckVal = 1;
 
-        if (this.emotion[4]/5 > 0.5)
+        if (this.emotion[4]/5 > 0.4)
           emocheckVal = 1;
         if (sad/5 > 0.1)
           emocheckVal = -1;
@@ -171,7 +171,14 @@ export default class Face extends Component {
         <div style={styles.font}>
           <button className ="btn btn-primary my-2 my-sm-0" type="submit" onClick={this.regen} >Next Question</button>
         </div>
-
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <div>
           <Webcam
             audio={false}

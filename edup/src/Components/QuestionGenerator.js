@@ -180,7 +180,7 @@ export default class questionGenerator extends Component {
 
           <div>
             <input id="answerInput" className="form-control mr-sm-2" type="text" placeholder="Enter the Answer"/>
-            <button className ="btn btn-success my-2 my-sm-0" type="submit" onClick={checkAnswer} >Sumbit</button>
+            <button className ="btn btn-success my-2 my-sm-0" type="submit" onClick={checkAnswer} >Submit</button>
           </div>
             <h1 id="response" />
             <h1 id="diffIndicator">Difficulty is : {diffval}</h1>
